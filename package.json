@@ -1,0 +1,20 @@
+{
+  "name": "learn-graphql",
+  "version": "1.0.0",
+  "description": "\"# Learn-GraphQL\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-express": "^3.13.0",
+    "express": "^4.21.0",
+    "graphql": "^16.9.0",
+    "pg": "^8.13.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.4"
+  }
+}
