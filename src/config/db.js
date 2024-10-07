@@ -1,15 +1,27 @@
-const { Sequelize } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 
-const sequelize = new Sequelize('database', 'username', 'password', {
-  host: 'localhost',
+require('dotenv').config();
+
+const sequelize = new Sequelize(
+  process.env.POSTGRES_DB, 
+  process.env.POSTGRES_USER, 
+  process.env.POSTGRES_PASSWORD, 
+  {
+  host: process.env.POSTGRES_HOST,
   dialect: 'postgres'
-});
+  }
+);
 
-try {
-  await sequelize.authenticate();
-  console.log('🚀 Connection has been established successfully.');
-} catch (error) {
-  console.error('💩 Unable to connect to the database:', error);
-}
+// All models
+const Products = require('../models/productsModel')(sequelize, DataTypes);
+const Categories = require('../models/categoriesModel')(sequelize, DataTypes);
+const Purchases = require('../models/purchasesModel')(sequelize, DataTypes);
+const Likes = require('../models/likesModel')(sequelize, DataTypes);
 
-module.exports = sequelize;
+module.exports = {
+  sequelize,
+  Products,
+  Purchases,
+  Categories,
+  Likes
+};
