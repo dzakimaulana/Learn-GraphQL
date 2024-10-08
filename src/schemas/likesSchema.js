@@ -13,12 +13,11 @@ const likeSchema = gql`
 
   type Query {
     totalLikes(productId: Int!): Int
-    likeAProduct: [Like]
+    likeAProduct(productId: Int!): [Like]
   }
 
   type Mutation {
-    addLike(productId: Int!): Like
-    deleteLike(productId: Int!): Like
+    likeUnlike(userId: UUID!, productId: Int!): mutationResponse!
   }
 `;
 

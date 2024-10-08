@@ -14,15 +14,13 @@ const purchaseSchema = gql`
   }
 
   type Query {
-    personalPurchase(userId: UUID!): [Purchase]
     purchaseInProduct(productId: Int!): [Purchase]
-    ratingInProduct(productId: Int!): Int
+    userPurchase(userId: UUID!): [Purchase]
+    ratingInProduct(productId: Int!): Float!
   }
 
   type Mutation {
-    addProduct(name: String!, categoryId: Int!, price: Int!): Product
-    updateProduct(id: ID!, name: String, categoryId: Int, price: Int): Product
-    deleteProduct(id: ID!): Product
+    addPurchase(userId: UUID!, productId: Int!, rating: Float!, comment: String): mutationResponse!
   }
 `;
 

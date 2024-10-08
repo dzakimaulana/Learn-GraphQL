@@ -14,9 +14,9 @@ const categorySchema = gql`
   }
 
   type Mutation {
-    addCategory(name: String!): Category!
-    updateCategory(id: ID!, name: String): Category!
-    deleteCategory(id: ID!): Category!
+    addCategory(name: String!): mutationResponse!
+    updateCategory(id: ID!, name: String): mutationResponse!
+    deleteCategory(id: ID!): mutationResponse!
   }
 `;
 

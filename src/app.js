@@ -1,5 +1,5 @@
 const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
+const { ApolloServer, AuthenticationError } = require('apollo-server-express');
 const { sequelize } = require('./config/db');
 const typeDefs = require('./schemas');
 const resolvers = require('./resolvers');
@@ -22,13 +22,26 @@ const startServer = async () => {
   // Express
   const app = express();
   app.use(express.json());
+  
 
   // Apollo Server
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    introspection: true,  // Enable introspection
-    playground: true 
+    introspection: true,
+    playground: true,
+    context: ({ req }) => {
+      const apiKey = req.headers['x-api-key'];
+      if (!apiKey || apiKey !== process.env.MY_API_KEY) {
+        throw new AuthenticationError('Forbidden');
+      }
+      return {}; 
+    },
+    formatError: (error) => {
+      return {
+        message: error.message,
+      };
+    }
   });
   await server.start();
   server.applyMiddleware({ app });

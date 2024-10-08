@@ -15,9 +15,9 @@ const productSchema = gql`
   }
 
   type Mutation {
-    addProduct(name: String!, categoryId: Int!, price: Int!): Product
-    updateProduct(id: ID!, name: String, categoryId: Int, price: Int): Product
-    deleteProduct(id: ID!): Product
+    addProduct(name: String!, categoryId: Int!, price: Int!): mutationResponse!
+    updateProduct(id: ID!, name: String, categoryId: Int, price: Int): mutationResponse!
+    deleteProduct(id: ID!): mutationResponse!
   }
 `;
 
