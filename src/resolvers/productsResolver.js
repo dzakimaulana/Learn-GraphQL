@@ -7,8 +7,8 @@ const productResolver = {
       try {
         const conditions = {};
 
-        if (conditions) conditions.categoryId = categoryId;
-        if (price) conditions.price = { [Op.lte]: price };
+        if (categoryId !== undefined) conditions.categoryId = categoryId;
+        if (price !== undefined) conditions.price = { [Op.lte]: price };
 
         return await Products.findAll({
           where: conditions
@@ -73,7 +73,7 @@ const productResolver = {
         throw new Error('Error delete product');
       }
     }
-  }  
+  },
 }
 
 module.exports = productResolver;

@@ -8,13 +8,6 @@ const categoryResolver = {
       } catch (error) {
         throw new Error("Error when get all categories");
       }
-    },
-    categoryName: async (_, { id }) => {
-      try {
-        return await Categories.findByPk(id);
-      } catch (error) {
-        throw new Error("Error get name category");
-      }
     }
   },
   Mutation: {
@@ -73,6 +66,15 @@ const categoryResolver = {
       } catch (error) {
         throw new Error("Error delete category");
       }
+    }
+  },
+  Product: {
+    category: async (parent) => {
+      const category = await Categories.findByPk(parent.categoryId);
+      if (!category) {
+        return null;
+      }
+      return category.name;
     }
   }
 }

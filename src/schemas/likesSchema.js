@@ -12,7 +12,6 @@ const likeSchema = gql`
   }
 
   type Query {
-    totalLikes(productId: Int!): Int
     likeAProduct(productId: Int!): [Like]
   }
 

@@ -6,7 +6,7 @@ const purchaseSchema = gql`
   type Purchase {
     id: ID!
     userId: UUID!
-    productID: Int!
+    productId: Int!
     rating: Float!
     comment: String
     createdAt: String!
@@ -14,9 +14,8 @@ const purchaseSchema = gql`
   }
 
   type Query {
-    purchaseInProduct(productId: Int!): [Purchase]
-    userPurchase(userId: UUID!): [Purchase]
-    ratingInProduct(productId: Int!): Float!
+    purchaseInProduct(productId: Int!): [Purchase!]!
+    userPurchase(userId: UUID!): [Purchase!]!
   }
 
   type Mutation {

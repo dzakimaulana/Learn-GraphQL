@@ -2,18 +2,6 @@ const { Likes } = require('../config/db');
 
 const likeResolver = {
   Query: {
-    totalLikes: async (_, { productId }) => {
-      try {
-        return await Likes.count({
-          where: {
-            productId: productId
-          }
-        });
-      } catch (error) {
-        throw new Error('Unable to fetch total likes');
-      }
-    },
-
     likeAProduct: async (_, { productId }) => {
       try {
         return await Likes.findAll({
@@ -56,7 +44,20 @@ const likeResolver = {
         throw new Error('Error processing like/unlike action');
       }
     }
-  }  
+  },
+  Product: {
+    likes: async (parent) => {
+      try {
+        return await Likes.count({
+          where: {
+            productId: parent.id
+          }
+        });
+      } catch (error) {
+        throw new Error('Unable to fetch total likes');
+      }
+    }
+  }
 }
 
 module.exports = likeResolver;

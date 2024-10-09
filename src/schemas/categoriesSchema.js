@@ -10,7 +10,6 @@ const categorySchema = gql`
 
   type Query {
     allCategories: [Category!]!
-    categoryName(id: ID!): Category!
   }
 
   type Mutation {

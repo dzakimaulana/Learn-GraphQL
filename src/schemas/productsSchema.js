@@ -4,14 +4,17 @@ const productSchema = gql`
   type Product {
     id: ID!
     name: String!
-    categoryId: Int!
+    category: String!
     price: Int!
+    likes: Int!
+    rating: Float!
+    purchased: Int!
     createdAt: String!
     updatedAt: String!
   }
 
   type Query {
-    products(categoryId: Int, price: Int): [Product]
+    products(categoryId: Int, price: Int): [Product!]!
   }
 
   type Mutation {
