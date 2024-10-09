@@ -22,7 +22,6 @@ const startServer = async () => {
   // Express
   const app = express();
   app.use(express.json());
-  
 
   // Apollo Server
   const server = new ApolloServer({
